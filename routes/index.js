@@ -33,6 +33,7 @@ router.get('/dashboard', ensureAuth , async(req, res) => {
       carts:carts,
       recentPurchase:recentPurchase,
     })
+    
   }  catch (err) {
       console.error(err)
       res.redirect('/dashboard')

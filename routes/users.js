@@ -109,6 +109,7 @@ router.post('/login', (req, res, next) => {
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
+  req.flash('success_msg','welcome to E-Kart!!!')
 });
 
 // Logout

@@ -3,7 +3,7 @@
 
 <% if(user.status == 'seller'){ %> 
     <a href="/sell/add" class="btn btn-info">Add Product</a>  
-    
+    <% if(products.length > 0){ %>
     <h5>Your Products</h5>
     
         <table class="responsive-table highlight centered z-depth-2">
@@ -38,7 +38,11 @@
                 <% }) %>      
             </tbody>
         </table>
+        <% } else{ %>     
+            <h6>No product Added</h6>
+        <% } %>
 <% }else { %>  
+    <% if(carts.length > 0){ %>
     <h5>Recent Purchase</h5>
     <table class="responsive-table highlight centered z-depth-2 ">
         <thead class="#263238 blue-grey darken-4 white-text">
@@ -107,6 +111,7 @@
             
         </tbody>
     </table>
+    <% } else{ %>     
+        <h6>No product Purchased</h6>
+    <% } %>
 <% } %>     
-
-

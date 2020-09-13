@@ -104,7 +104,9 @@ router.put('/buy', ensureAuth, async (req, res) => {
       new: true,
       runValidators: true,
     })
+    req.flash('success_msg','Order Placed!! Thank you!!')
     res.redirect('/dashboard')
+    
   } catch (err) {
     console.log(err)
     req.flash('error_msg','error buying items')
