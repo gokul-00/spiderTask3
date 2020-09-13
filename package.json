@@ -19,6 +19,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
     "filepond": "^4.20.1",
+    "dotenv": "^8.2.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
