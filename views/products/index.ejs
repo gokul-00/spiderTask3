@@ -32,7 +32,7 @@
             <% if(product.quantity == 0){ %> 
               <h5 class="red-text">OUT OF STOCK</h5>
             <% }else{ %>   
-              <h5 class="left-align">INR : &#8377; <%= product.price - product.discount %><img src="https://img.icons8.com/color/24/000000/discount--v1.png"/></h5>
+              <h5 class="left-align">INR : &#8377; <%= product.price - (product.discount*product.price*0.01) %><img src="https://img.icons8.com/color/24/000000/discount--v1.png"/></h5>
               <p class="left-align actual-price">INR : &#8377; <%= product.price %> </p>
             <% } %>  
             <div class="chip"><%= product.category %></div> 

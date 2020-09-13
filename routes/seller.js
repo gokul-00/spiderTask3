@@ -38,7 +38,12 @@ router.post('/add', ensureAuth, async (req, res) => {
     user:req.body.user,
   })  
   try {
+    if(req.body.ProductImg){
       saveImg(product, req.body.ProductImg)
+    }else {
+      req.flash('error_msg', 'All fields are compulsory')
+      return res.render('products/add',{categories:categories})
+    }
       await product.save()
       req.flash('success_msg', 'product added')
       res.redirect('/sell/show')
@@ -46,7 +51,7 @@ router.post('/add', ensureAuth, async (req, res) => {
     } catch (err) {
       console.error(err)
       req.flash('error_msg', 'error adding product..')
-      res.render('products/add')
+      res.render('products/add',{categories:categories})
       
     }
 })
