@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><%= product.product_name %> </span>
+          <div class="chip"><%= product.category %></div>
+          <p><%= product.description %></p>
+          <h5>&#8377; <%= product.price %></h5>
+          <p><b>Stock Available : <%= product.quantity %></b></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<h5>Purchase Details</h5>
+<table class="responsive-table highlight centered z-depth-2 ">
+    <thead class="#263238 blue-grey darken-4 white-text">
+      <tr>
+          <th>#</th>
+          <th>Customer Name</th>
+          <th>E-mail</th>
+          <th>Quantity</th>
+          <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% carts.forEach( (cart,i) => { %> 
+            <% if(cart.status == 'buy'){ %> 
+            <tr>
+                <td><%= i+1 %> </td>
+                <td><%= cart.user.name %></td>
+                <td><%= cart.user.email %></td>
+                <td><%= cart.quantity %></td>
+                <td><%= cart.purchaseDate %></td>
+            </tr>
+            <% } %> 
+        <% }) %> 
+    </tbody>
+</table>
+
+<%- include('../partials/chart.ejs',{analysis:analysis}) %> 

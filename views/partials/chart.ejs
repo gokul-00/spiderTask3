@@ -1,0 +1,105 @@
+<canvas id="myChart"></canvas>
+<div style="display: none;">
+<div class="date-class">
+    <% analysis.forEach( data => { %> 
+        <div class="date"><%= data.date %> </div>
+    <% }) %>     
+</div>
+<div class="quantity-class">
+    <% analysis.forEach( data => { %> 
+        <div class="quantity"><%= data.quantity %></div>
+    <% }) %>     
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+<script>    
+const dates = document.querySelectorAll('.date')
+const quantities = document.querySelectorAll('.quantity')
+
+let dates_array = []
+let quantities_array = []
+
+quantities.forEach(quantity => {
+    quantities_array.push(quantity.innerHTML)
+})
+
+dates.forEach(date => {
+    dates_array.push(date.innerHTML)
+})
+
+let ratio = 1
+
+if(window.innerWidth > 640){
+    ratio = 2
+}else {
+    ratio = 7/6
+}
+
+let myChart = document.getElementById('myChart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+      type:'bar', 
+      data:{
+        labels:dates_array.reverse(),
+        datasets:[{
+          label:'Number of items',
+          fontSize:16,
+          data:quantities_array.reverse(),
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(75, 192, 192, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:2,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Purchase Analysis',
+          fontSize:24
+        },
+        legend:{
+          display:true,
+          position:'bottom',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        aspectRatio:ratio,
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                  min:0,
+                }
+            }]
+        }
+    
+      }
+    });
+</script>

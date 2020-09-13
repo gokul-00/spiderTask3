@@ -1,0 +1,65 @@
+<h3>Add Product</h3>
+<form action="/sell/add" method="POST">
+    <div class="row">
+        <div class="input-field">
+            <input type="text" id="product_name" name="product_name">
+            <label for="product_name">Product Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+          <textarea id="description" name="description" class="materialize-textarea"></textarea>
+          <label for="description">Description</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="price" name="price" type="number" class="validate">
+            <label for="price">Price</label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="discount" name="discount" type="number" class="validate">
+            <label for="discount">Discount <span>(optional)</span></label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="quantity" name="quantity" type="number" class="quantity" min="0">
+            <label for="quantity">Quantity</label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <select id="category" name="category">
+                <option selected disabled>select category...</option>
+                <% categories.forEach(category => { %> 
+                    <option value="<%= category %>"><%= category %></option>
+                <% }) %> 
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <input
+            type="file"
+            id="ProductImg"
+            name="ProductImg"
+            class="filepond"
+            >
+            <label for="ProductImg">Product Image</label>
+        </div>
+    </div> 
+    
+    <div class="row">
+        <input type="submit" class="btn" value="Add">
+        <a href="/dashboard" class="btn orange">Cancel</a>
+    </div>
+
+</form>
+
+  

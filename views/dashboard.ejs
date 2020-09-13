@@ -1,0 +1,112 @@
+<h3 class="mt-4">Dashboard</h3>
+<p class="lead mb-3">Welcome <%= user.name %></p>
+
+<% if(user.status == 'seller'){ %> 
+    <a href="/sell/add" class="btn btn-info">Add Product</a>  
+    
+    <h5>Your Products</h5>
+    
+        <table class="responsive-table highlight centered z-depth-2">
+            <thead class='#263238 blue-grey darken-4 white-text'>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product_Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% products.forEach( (product,i) => { %> 
+                    <tr>
+                        <td scope="row"><%= i+1 %></td>
+                        <td><a href="/purchase/show/product/<%= product._id %>"><%= product.product_name %></a></td>
+                        <td><%= product.quantity %></td>
+                            <td> 
+                                <div class="row">  
+                                <a href="/sell/edit/<%= product._id %>" class="btn btn-info md-2">
+                                    <i class="material-icons large">edit</i>
+                                </a>
+                                <form action="/sell/<%= product._id %>" method="POST" id="delete-form">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn red">
+                                        <i class="material-icons large">delete</i>
+                                    </button>
+                                </form>
+                                </div> 
+                            </td>
+                    </tr>
+                <% }) %>      
+            </tbody>
+        </table>
+<% }else { %>  
+    <h5>Recent Purchase</h5>
+    <table class="responsive-table highlight centered z-depth-2 ">
+        <thead class="#263238 blue-grey darken-4 white-text">
+          <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% recentPurchase.forEach( (cart,i) => { %> 
+                <tr>
+                    
+                    <% if(cart.product == null){ %> 
+                        <td><%= i+1 %> </td>
+                        <td> Deleted - product </td>
+                        <td><%= cart.quantity %></td>
+                        <td> --- </td>
+                        <td><%= cart.purchaseDate %></td>
+                    <% } else{ %> 
+                        <td><%= i+1 %> </td>
+                        <td><%= cart.product.product_name %></td>
+                        <td><%= cart.quantity %></td>
+                        <td><%= cart.product.price %></td>
+                        <td><%= cart.purchaseDate %></td>
+                    <% } %> 
+                    
+                </tr>
+            <% }) %> 
+            
+        </tbody>
+    </table>
+    <h5>Purchase History</h5>
+    <table class="responsive-table highlight centered z-depth-2 ">
+        <thead class="#263238 blue-grey darken-4 white-text">
+          <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% carts.forEach( (cart,i) => { %> 
+                <tr>
+                    
+                    <% if(cart.product == null){ %> 
+                        <td><%= i+1 %> </td>
+                        <td> Deleted - product </td>
+                        <td><%= cart.quantity %></td>
+                        <td> --- </td>
+                        <td><%= cart.purchaseDate %></td>
+                    <% } else{ %> 
+                        <td><%= i+1 %> </td>
+                        <td><%= cart.product.product_name %></td>
+                        <td><%= cart.quantity %></td>
+                        <td><%= cart.product.price %></td>
+                        <td><%= cart.purchaseDate %></td>
+                    <% } %> 
+                    
+                </tr>
+            <% }) %> 
+            
+        </tbody>
+    </table>
+<% } %>     
+
+

@@ -1,0 +1,22 @@
+<% if (locals.errors != null) { %> <% errors.forEach(function(error) { %>
+    <div class="chip #ef5350 red lighten-3">
+      <%= error.msg %>
+      <i class="close material-icons">close</i>
+    </div>
+    <% }); %> <% } %> <% if(success_msg != ''){ %>
+      <div class="chip #b9f6ca green accent-1">
+        <%= success_msg %>
+        <i class="close material-icons">close</i>
+      </div>
+    <% } %> <% if(error_msg != ''){ %>
+    <div class="chip #ef5350 red lighten-3">
+      <%= error_msg %>
+      <i class="close material-icons">close</i>
+    </div>
+    <% } %> <% if(error != ''){ %>
+      <div class="chip #ef5350 red lighten-3">
+        <%= error %>
+        <i class="close material-icons">close</i>
+      </div>
+    <% } %>
+    

@@ -1,0 +1,21 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo center"><i class="material-icons large">shopping_cart</i>E-Kart</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/sell/show">Products</a></li>
+      <% if(user.status == 'customer'){ %> 
+      <li><a href="/purchase/cart"><i class="material-icons">shopping_cart</i></a></li>
+      <% } %> 
+      <li><a href="/users/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/dashboard">Dashboard</a></li>
+  <li><a href="/sell/show">Products</a></li>
+  <li><a href="/purchase/cart">Cart</a></li>
+  <li><a href="/users/logout">Logout</a></li>
+</ul>

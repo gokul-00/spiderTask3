@@ -1,0 +1,70 @@
+<h2>Edit Product Details</h2>
+<form action="/sell/edit/<%= product._id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="row">
+        <div class="input-field">
+            <input type="text" id="product_name" name="product_name" value="<%= product.product_name %>">
+            <label for="product_name">Product Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+          <textarea id="description" name="description" class="materialize-textarea"><%= product.description %></textarea>
+          <label for="description">Description</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="price" name="price" type="number" class="validate" value="<%= product.price %>">
+            <label for="price">Price</label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="discount" name="discount" type="number" class="validate" value="<%= product.discount %>">
+            <label for="discount">Discount</label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="quantity" name="quantity" type="number" class="quantity" min="0" value="<%= product.quantity %>">
+            <label for="quantity">Quantity</label>
+            <p class="font-weight-light">should not contain any speacial characters.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <select id="category" name="category" value="<%= product.category %>">
+                <option value="<%= product.category %>" selected><%= product.category %></option>
+                <% categories.forEach(category => { %> 
+                    <option value='<%= category %>' ><%= category %></option>
+                <% }) %> 
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <% if(product.ProductImg){ %>
+                <img src="<%= product.path %> " 
+                alt="product image"
+                style="width: 100%;">
+            <% } %>     
+        </div>
+        <div class="input-field col s6"> 
+            <input
+            type="file"
+            id="ProductImg"
+            name="ProductImg"
+            class="filepond"
+            >
+            <label for="ProductImg">Product Image</label>
+        </div>   
+    </div> 
+    
+    <div class="row">
+        <input type="submit" class="btn" value="Edit">
+        <a href="/dashboard" class="btn orange">Cancel</a>
+    </div>
+</form>

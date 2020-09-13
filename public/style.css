@@ -1,0 +1,17 @@
+
+.brand-logo {
+    font-family: 'Ranchers', cursive;
+}
+
+.material-icons:hover{
+    transform: scale(1.2);
+}
+
+.index-card {
+    margin-top: 10%;
+    padding: 10px;
+}
+
+.actual-price {
+    text-decoration: line-through;
+}

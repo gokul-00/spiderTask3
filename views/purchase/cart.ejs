@@ -1,0 +1,60 @@
+<% if(products.length > 0 && products != undefined){ %>
+<table class="responsive-table highlight centered z-depth-2 ">
+    <thead class="#263238 blue-grey darken-4 white-text">
+      <tr>
+          <th>#</th>
+          <th>Item Name</th>
+          <th>quantity</th>
+          <th>Item Price</th>
+          <th>Total</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% products.forEach( (cart,i) => { %> 
+            <% if(cart.status == 'cart'){ %> 
+            <tr>
+                <td><%= i+1 %> </td>
+                <td><%= cart.product.product_name %></td>
+                <td><%= cart.quantity %></td>
+                <td>&#8377; <%= cart.product.price %></td>
+                <td>&#8377; <%= cart.cost %></td>
+                <td>
+                    <form action="/purchase/<%= cart._id %>" method="POST" id="delete-form">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red right-align">
+                            <i class="material-icons large">close</i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% } %> 
+        <% }) %>  
+        <tr>
+            <td>$</td>
+            <td>---</td>
+            <td><%= quantity %></td>
+            <td><b>Total Cost</b> : </td>
+            <td><b>&#8377; <%= total %></b></td>
+            <td>
+                <form action="/purchase/buy" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="row">
+                        <input type="submit" class="btn" value="Buy">
+                    </div>
+                </form>
+            </td>
+        </tr>       
+    </tbody>
+</table>
+<div class="row">
+    <a href="/sell/show" class="btn orange">Continue Shop</a>
+    <a href="/dashboard" class="btn orange">Cancel</a>
+</div>
+
+<% } else { %>  
+    <h4>No items in Cart...</h4>    
+    <a href="/sell/show" class="btn orange">Shop<i class="material-icons large">shopping_cart</i></a> 
+<% } %>
+
+    
