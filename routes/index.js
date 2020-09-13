@@ -5,7 +5,7 @@ const { ensureAuth, ensureGuest } = require('../auth');
 const Product = require('../models/Product')
 const Cart = require('../models/Cart')
 
-let recentPurchase = []
+
 // Dashboard
 router.get('/', ensureGuest , (req, res) => res.render('index'));
 
@@ -18,6 +18,8 @@ router.get('/dashboard', ensureAuth , async(req, res) => {
                           .populate('product') 
                           .sort({ purchaseDate: 'desc'})
                           .lean()         
+
+  let recentPurchase = []                        
   carts.forEach(cart => {
     if(carts[0].purchaseDate == cart.purchaseDate){
       recentPurchase.push(cart)
